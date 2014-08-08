@@ -22,8 +22,8 @@ class Db_Bid extends Db_Abstract{
 	 */
 	public function getBidPriceByBoids($data = array()){
 		$data = array_values($data);
-		$sql = "select * from `bidbuyorder` where boid in (?)";
-		return $this->dbObj->fetch_all ( $sql, $data );
+		$sql = "select * from `bidbuyorder` where boid in ({$data[0]})";
+		return $this->dbObj->fetch_all ( $sql );
 	}
 	
 	/**
