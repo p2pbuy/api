@@ -31,7 +31,7 @@ class Db_User extends Db_Abstract{
 	
 	/**
 	 * 获得用户扩展信息
-	 * @param bigint $uid
+	 * @param int $uid
 	 */
 	public function getUserInfoByUid($uid){
 		$sql = "select * from `userinfo` where `uid` = {$uid}";
@@ -50,5 +50,22 @@ class Db_User extends Db_Abstract{
 	public function getUserInfoByUserPasswd($username,$passwd){
 		$sql = "select uid from `users` where `email` = ? and `passwd` = ?";
 		return $this->dbObj->fetch_row($sql , array($username,$passwd));
+	}
+	
+	/**
+	 * 根据用户邮箱获得用户信息
+	 * @param string $email
+	 */
+	public function getUserInfoByEmail($email){
+		$sql = "select * from `users` where `email` = ?";
+		return $this->dbObj->fetch_row($sql,array($email));
+	}
+	
+	/**
+	 * 写入us-ex信息
+	 */
+	public function setUsExInfo($data = array()){
+		$sql = "insert into `usex_info` (`uid`,`memberid`,`codenum`) values (?,?,?)";
+		return  $this->dbObj->exec ( $sql, $data );
 	}
 }

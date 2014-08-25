@@ -47,4 +47,12 @@ class Dr_User extends Dr_Abstract{
 		$PUCE = explode(',', $_COOKIE['PUCE']);
 		return $PUCE[0];
 	}
+	
+	//根据email获得uid
+	public static function getUidByEmail($email){
+		$db = new Db_User();
+		$userinfo = $db->getUserInfoByEmail($email);
+		
+		return $userinfo;
+	}
 }

@@ -1,6 +1,6 @@
 <?php
 class Api_User extends Api_Abstract{
-	const API_HOST = 'http://127.0.0.1';
+	const API_HOST = 'http://p2pbuy.net';
 	public static $instance = null;
     public static function instance(){
     	if(self::$instance == null){
@@ -24,5 +24,18 @@ class Api_User extends Api_Abstract{
     		'source' => $info['source'],
         );
         return self::instance()->post(self::getApiUrl('api/reg'), $params);
+    }
+    
+	/**
+     * 注册美国快递用户
+     */
+    public static function regUsEx($info){
+    	$params = array(
+    		'para' => json_encode($info),
+    	);
+    	$url = 'http://www.us-ex.com/api/usex.asmx/API';
+    	$option['timeout'] = 6000;
+    	$option['connect_timeout'] = 6000;
+    	return self::instance()->get($url, $params, $option);
     }
 }
