@@ -71,4 +71,40 @@ class Db_Order extends Db_Abstract{
 		$sql = "update `buyorder` set {$data['set']} where {$data['where']}";
 		return  $this->dbObj->exec ( $sql, $data['upddata'] );
 	}
+	
+	/**
+	 * 设置收获地址
+	 */
+	public function setAddress($data = array()){
+		$sql = "select id from `user_addr` where `uid` = ? && `name` = ? && `country` = ? && `province` = ? && `city` = ? && `address` = ? && `mobile` = ? limit 1";
+		$re = $this->dbObj->fetch_row($sql , $data);
+		if(!empty($re['id'])){
+			return $re['id'];
+		}
+		
+		$sql = "insert into `user_addr` (`uid`,`name`,`country`,`province`,`city`,`address`,`mobile`) values (?,?,?,?,?,?,?);";
+		$re = $this->dbObj->exec ( $sql, $data );
+		if($re == true){
+			$lastInsertId = $this->dbObj->__call('lastInsertId',array());
+			$lastInsertId = str_pad($lastInsertId, 20, '0', STR_PAD_LEFT);
+			$re = $lastInsertId;
+		}
+		return $re;
+	}
+	
+	/**
+	 * 根据uid获得收获地址
+	 */
+	public function getAddressByUid($data = array()){
+		$sql = "select * from `user_addr` where `uid` = ? order by id desc";
+		return $this->dbObj->fetch_all ( $sql , $data);
+	}
+	
+	/**
+	 * 根据ids获得收获地址
+	 */
+	public function getAddressById($data = array()){
+		$sql = "select * from `user_addr` where `id` in ({$data[0]}) order by id desc";
+		return $this->dbObj->fetch_all ( $sql );
+	}
 }

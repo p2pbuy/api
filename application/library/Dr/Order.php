@@ -71,4 +71,34 @@ class Dr_Order extends Dr_Abstract{
 		}
 		return $takeOrderInfo;
 	}
+	
+	public static function getAddressByUidByDb($uid){
+		if(empty($uid)){
+			return false;
+		}
+		
+		$info[] = $uid;
+		try{
+			$db = new Db_Order();
+			$addressInfo = $db->getAddressByUid($info);
+		}catch(Exception $e){
+			return false;
+		}
+		return $addressInfo;
+	}
+	
+	public static function getAddressByIdByDb($ids){
+		if(empty($ids)){
+			return false;
+		}
+		
+		$info[] = $ids;
+		try{
+			$db = new Db_Order();
+			$addressInfo = $db->getAddressById($info);
+		}catch(Exception $e){
+			return false;
+		}
+		return $addressInfo;
+	}
 }

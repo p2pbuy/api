@@ -58,4 +58,19 @@ class Dw_Order extends Dw_Abstract{
 		}
 		return $re;
 	}
+	
+	//设置收获地址
+	public static function setAddressByDb($info){
+		try{
+			$data = array();
+			foreach($info as $value){
+				$data[] = $value;
+			}
+			$db = new Db_Order();
+			$re = $db->setAddress($data);
+		}catch(Exception $e){
+			return false;
+		}
+		return $re;
+	}
 }
