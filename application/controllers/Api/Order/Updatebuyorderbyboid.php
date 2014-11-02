@@ -14,6 +14,9 @@ class Api_Order_UpdatebuyorderbyboidController extends Api_AbstractController{
 		$this->_context['quantity'] = Comm_Context::post('quantity');
 		$this->_context['additional'] = Comm_Context::post('additional');
 		$this->_context['lock'] = Comm_Context::post('lock','int');
+		$this->_context['addressid'] = Comm_Context::post('addressid');
+		$this->_context['status'] = Comm_Context::post('status');
+		$this->_context['dealprice'] = Comm_Context::post('dealprice');
 		$this->_context['sign'] = Comm_Context::post('sign');
 		
 		$this->_checkFields = array('boid' => $this->_context['boid']);
@@ -27,6 +30,9 @@ class Api_Order_UpdatebuyorderbyboidController extends Api_AbstractController{
 		$info['quantity'] = $this->_context['quantity'];
 		$info['additional'] = $this->_context['additional'];
 		$info['lock'] = $this->_context['lock'];
+		$info['addressid'] = $this->_context['addressid'];
+		$info['status'] = $this->_context['status'];
+		$info['dealprice'] = $this->_context['dealprice'];
 
 		$re = Dw_Order::updateBuyOrderByBoidByDb($info);
 		
