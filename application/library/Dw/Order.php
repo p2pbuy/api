@@ -41,11 +41,15 @@ class Dw_Order extends Dw_Abstract{
 		try{
 			$data['where'] = '`boid` = ?';
 			foreach($info as $key => $value){
-				if(!empty($value) && $key != 'boid'){
+				if($key != 'boid'){
+					if(empty($value) && !is_numeric($value)){
+						continue;
+					}
 					$data['set'] .= "`{$key}` = ?,";
 					$data['upddata'][] = $value;
 				}
 			}
+
 			if(empty($data['set'])){
 				return false;
 			}
