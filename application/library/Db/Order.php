@@ -107,4 +107,17 @@ class Db_Order extends Db_Abstract{
 		$sql = "select * from `user_addr` where `id` in ({$data[0]}) order by id desc";
 		return $this->dbObj->fetch_all ( $sql );
 	}
+	
+	/**
+	 * 删除订单数据
+	 */
+	public function delBuyOrder($data = array()){
+		$sql = "delete from `smugglertakeorder` where `boid` = ? ";
+		$this->dbObj->exec ( $sql, $data );
+		$sql = "delete from `bidbuyorder` where `boid` = ? ";
+		$this->dbObj->exec ( $sql, $data );
+		$sql = "delete from `buyorder` where `boid` = ? ";
+		$this->dbObj->exec ( $sql, $data );
+		return true;
+	}
 }

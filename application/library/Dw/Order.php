@@ -77,4 +77,16 @@ class Dw_Order extends Dw_Abstract{
 		}
 		return $re;
 	}
+	
+	//删除订单
+	public static function delBuyOrderByBoidByDb($info = array()){
+		$data[] = $info['boid'];
+		try{
+			$db = new Db_Order();
+			$re = $db->delBuyOrder($data);
+		}catch(Exception $e){
+			return false;
+		}
+		return $re;
+	}
 }
