@@ -47,4 +47,31 @@ class Dw_User extends Dw_Abstract{
 		}
 		return $result;
 	}
+	
+	//更新userinfo表信息
+	public static function updateUserInfoByUidByDb($info){
+		try{
+			$data['where'] = '`uid` = ?';
+			foreach($info as $key => $value){
+				if($key != 'uid'){
+					if(empty($value) && !is_numeric($value)){
+						continue;
+					}
+					$data['set'] .= "`{$key}` = ?,";
+					$data['upddata'][] = $value;
+				}
+			}
+
+			if(empty($data['set'])){
+				return false;
+			}
+			$data['set'] = substr($data['set'], 0, -1);
+			$data['upddata'][] = $info['uid'];
+			$db = new Db_User();
+			$re = $db->updUserInfo($data);
+		}catch(Exception $e){
+			return false;
+		}
+		return $re;
+	}
 }

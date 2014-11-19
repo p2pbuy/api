@@ -14,7 +14,7 @@ class Db_User extends Db_Abstract{
 	 * @param bigint $uid
 	 */
 	public function getUserByUid($uid){
-		$sql = "select * from `users` where `uid` = {$uid}";
+		$sql = "select uid,nick,email,createtime from `users` where `uid` = {$uid}";
 		return $this->dbObj->fetch_all ( $sql );
 	}
 	
@@ -67,5 +67,21 @@ class Db_User extends Db_Abstract{
 	public function setUsExInfo($data = array()){
 		$sql = "insert into `usex_info` (`uid`,`memberid`,`codenum`) values (?,?,?)";
 		return  $this->dbObj->exec ( $sql, $data );
+	}
+	
+	/**
+	 * 获得用户信息
+	 */
+	public function getUserInfos($data = array()){
+		$sql = "select uid,nick from `users` order by createtime desc limit {$data['start']},{$data['count']}";
+		return $this->dbObj->fetch_all ( $sql );
+	}
+	
+	/**
+	 * 根据uid更新userinfo
+	 */
+	public function updUserInfo($data = array()){
+		$sql = "update `userinfo` set {$data['set']} where {$data['where']}";
+		return  $this->dbObj->exec ( $sql, $data['upddata'] );
 	}
 }

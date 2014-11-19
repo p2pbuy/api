@@ -30,6 +30,14 @@ class Api_Order_CreatebuyorderController extends Api_AbstractController{
 		$info['img'] = $this->_context['img'];
 		$info['thirdurl'] = $this->_context['thirdurl'];
 		
+		if(empty($info['uid'])){
+			$code = Tools_Conf::get('Show_Code.api.fail');
+			$msg = 'uid is empty';
+			
+			$this->renderAjax($code,$msg);
+			return true;
+		}
+		
 		$re = Dw_Order::createBuyOrderByDb($info);
 		if($re == false){
 			$code = Tools_Conf::get('Show_Code.api.fail');

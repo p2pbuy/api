@@ -55,4 +55,22 @@ class Dr_User extends Dr_Abstract{
 		
 		return $userinfo;
 	}
+	
+	//获得用户信息
+	public static function getUserInfos($info = array()){
+		$info['count'] = (is_numeric($info['count'])) ? $info['count'] : 0;
+		$info['page'] = (is_numeric($info['page'])) ? $info['page'] : 0;
+		$info['start'] = (is_numeric($info['start'])) ? $info['start'] : 0;
+		
+		$info['count'] = ($info['count']) ? intval($info['count']) : 5;
+		$info['page'] = ($info['page']) ? intval($info['page']) : 1;
+		$info['start'] = ($info['page'] - 1) * $info['count'];
+		try{
+			$db = new Db_User();
+			$userInfos = $db->getUserInfos($info);
+		}catch(Exception $e){
+			return false;
+		}
+		return $userInfos;
+	}
 }
