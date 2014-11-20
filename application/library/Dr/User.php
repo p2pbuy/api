@@ -62,7 +62,7 @@ class Dr_User extends Dr_Abstract{
 		$info['page'] = (is_numeric($info['page'])) ? $info['page'] : 0;
 		$info['start'] = (is_numeric($info['start'])) ? $info['start'] : 0;
 		
-		$info['count'] = ($info['count']) ? intval($info['count']) : 5;
+		$info['count'] = ($info['count']) ? intval($info['count']) : 10;
 		$info['page'] = ($info['page']) ? intval($info['page']) : 1;
 		$info['start'] = ($info['page'] - 1) * $info['count'];
 		try{

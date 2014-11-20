@@ -57,7 +57,7 @@ class Db_User extends Db_Abstract{
 	 * @param string $email
 	 */
 	public function getUserInfoByEmail($email){
-		$sql = "select * from `users` where `email` = ?";
+		$sql = "select uid,nick,email,createtime from `users` where `email` = ?";
 		return $this->dbObj->fetch_row($sql,array($email));
 	}
 	
