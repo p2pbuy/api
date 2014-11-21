@@ -14,6 +14,7 @@ class Dr_Order extends Dr_Abstract{
 		$info['count'] = ($info['count']) ? intval($info['count']) : 5;
 		$info['page'] = ($info['page']) ? intval($info['page']) : 1;
 		$info['start'] = ($info['page'] - 1) * $info['count'];
+		$info['isshow'] = ($info['isshow']) ? 1 : 0;
 		try{
 			$db = new Db_Order();
 			$buyOrderInfo = $db->getBuyOrderInfo($info);

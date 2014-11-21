@@ -9,6 +9,7 @@ class Api_Order_ShowbuyorderController extends Api_AbstractController{
 		$this->_context['source'] = Comm_Context::get('source');
 		$this->_context['count'] = Comm_Context::get('count');
 		$this->_context['page'] = Comm_Context::get('page');
+		$this->_context['isshow'] = Comm_Context::get('isshow');
 		$this->_context['sign'] = Comm_Context::get('sign');
 		
 		$this->_checkFields = array();
@@ -17,6 +18,7 @@ class Api_Order_ShowbuyorderController extends Api_AbstractController{
 	public function doAction(){
 		$info['count'] = $this->_context['count'];
 		$info['page'] = $this->_context['page'];
+		$info['isshow'] = $this->_context['isshow'];
 		
 		$re = Dr_Order::showBuyOrder($info);
 		$this->renderAjax(Tools_Conf::get('Show_Code.api.succ'),'',$re);
