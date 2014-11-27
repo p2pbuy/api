@@ -21,7 +21,7 @@ class Api_Bid_BidbuyorderController extends Api_AbstractController{
 		$info['uid'] = $this->_context['uid'];
 		
 		$buyOrderInfos = Dr_Order::showBuyOrderByBoids($info['boid']);
-		if($buyOrderInfos[0][lock] == 1){
+		if($buyOrderInfos[0][lock] == 2){
 			$code = Tools_Conf::get('Show_Code.api.fail');
 			$msg = 'order has been locked';
 		}else{

@@ -22,8 +22,8 @@ class Api_Order_CreatebuyorderController extends Api_AbstractController{
 	}
 	public function doAction(){
 		$info['uid'] = $this->_context['uid'];
-		$info['title'] = $this->_context['title'];
-		$info['description'] = $this->_context['description'];
+		$info['title'] = (empty($this->_context['title'])) ? '' : $this->_context['title'];
+		$info['description'] = (empty($this->_context['description'])) ? '' : $this->_context['description'];
 		$info['price'] = $this->_context['price'];
 		$info['quantity'] = ($this->_context['quantity']) ? $this->_context['quantity'] : 1;
 		$info['additional'] = $this->_context['additional'];

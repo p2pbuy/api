@@ -28,7 +28,7 @@ class Db_Order extends Db_Abstract{
 	 * 读取买家订单信息
 	 */
 	public function getBuyOrderInfo($data = array()){
-		$sql = "select * from `buyorder` where `isshow` = {$data['isshow']} order by createtime desc limit {$data['start']},{$data['count']}";
+		$sql = "select * from `buyorder` where `isshow` = {$data['isshow']} and `lock` = {$data['lock']} order by createtime desc limit {$data['start']},{$data['count']}";
 		return $this->dbObj->fetch_all ( $sql );
 	}
 	
