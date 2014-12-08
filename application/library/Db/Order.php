@@ -36,7 +36,7 @@ class Db_Order extends Db_Abstract{
 	 * 根据boid读取买家订单信息
 	 */
 	public function getBuyOrderInfoByBoids($data = array()){
-		$sql = "select * from `buyorder` where boid in ({$data['boids']})";
+		$sql = "select * from `buyorder` where boid in ({$data['boids']}) order by createtime desc";
 		return $this->dbObj->fetch_all ( $sql );
 	}
 	
