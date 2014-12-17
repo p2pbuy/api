@@ -120,4 +120,28 @@ class Db_Order extends Db_Abstract{
 		$this->dbObj->exec ( $sql, $data );
 		return true;
 	}
+	
+	/**
+	 * 写入物流信息
+	 */
+	public function addLogisticsInfo($data = array()){
+		$sql = "insert into `logisticsinfo` (`boid`,`info`,`operator`,`createtime`) values (?,?,?,?);";
+		return $this->dbObj->exec ( $sql, $data );
+	}
+	
+	/**
+	 * 删除物流信息
+	 */
+	public function delLogisticsInfoById($data = array()){
+		$sql = "delete from `logisticsinfo` where `id` = ? and `boid` = ? ";
+		$this->dbObj->exec ( $sql, $data );
+	}
+	
+	/**
+	 * 根据boid获得物流信息
+	 */
+	public function getLogisticsInfoByBoid($data = array()){
+		$sql = "select * from `logisticsinfo` where `boid` = ? order by id desc";
+		return $this->dbObj->fetch_all($sql , $data);
+	}
 }

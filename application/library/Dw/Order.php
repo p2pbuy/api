@@ -89,4 +89,34 @@ class Dw_Order extends Dw_Abstract{
 		}
 		return $re;
 	}
+	
+	//写入物流信息
+	public static function addLogisticsInfoByDb($info = array()){
+		try{
+			$data = array();
+			foreach($info as $value){
+				$data[] = $value;
+			}
+			$db = new Db_Order();
+			$re = $db->addLogisticsInfo($data);
+		}catch(Exception $e){
+			return false;
+		}
+		return $re;
+	}
+	
+	//根据id删除物流信息
+	public static function delLogisticsInfoByIdByDb($info = array()){
+		try{
+			$data = array();
+			foreach($info as $value){
+				$data[] = $value;
+			}
+			$db = new Db_Order();
+			$re = $db->delLogisticsInfoById($data);
+		}catch(Exception $e){
+			return false;
+		}
+		return $re;
+	}
 }

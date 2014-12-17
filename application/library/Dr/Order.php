@@ -103,4 +103,24 @@ class Dr_Order extends Dr_Abstract{
 		}
 		return $addressInfo;
 	}
+	
+	/**
+	 * 根据boid获取物流信息
+	 */
+	public static function getLogisticsInfoByBoidByDb($info = array()){
+		if(empty($info['boid'])){
+			return false;
+		}
+		try{
+			$data = array();
+			foreach($info as $value){
+				$data[] = $value;
+			}
+			$db = new Db_Order();
+			$logisticsInfo = $db->getLogisticsInfoByBoid($data);
+		}catch(Exception $e){
+			return false;
+		}
+		return $logisticsInfo;
+	}
 }
