@@ -2,7 +2,7 @@
 /**
  * SKU
  * @author liang
- * @version 2015-8-2
+ * @version 2015-10-9
  */
 class Dw_Sku extends Dw_Abstract{
 	//写入sku信息
@@ -20,15 +20,15 @@ class Dw_Sku extends Dw_Abstract{
 		return $re;
 	}
 	
-	//获取sku信息
-	public static function getSkuByDb($info = array()){
+	//删除sku信息
+	public static function delSkuByDb($info = array()){
 		try{
 			$data = array();
 			foreach($info as $value){
 				$data[] = $value;
 			}
 			$db = new Db_Sku();
-			$re = $db->getSku($data);
+			$re = $db->delSku($data);
 		}catch(Exception $e){
 			return false;
 		}

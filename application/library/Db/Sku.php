@@ -27,4 +27,14 @@ class Db_Sku extends Db_Abstract{
 		$sql = "select * from `sku`;";
 		return $this->dbObj->fetch_all($sql , $data);
 	}
+	
+	/**
+	 * 删除sku信息
+	 * @param array $data
+	 */
+	public function delSku($data = array()){
+		$sql = "delete from `sku` where `id` = ? ";
+		$this->dbObj->exec ( $sql, $data );
+		return true;
+	}
 }
